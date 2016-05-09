@@ -58,26 +58,31 @@ int main(int argc, char *argv[])
 
 	// Load package manager specific shit here
 
-	// Probably just use some sort of struct
 	// make command = the base command... So if someone does 'tuxc s foobar'
 	// in the case of XBPS, command will equal "xbps-query -Rs" We add the space later
   
-	int example = 'A';
-  char *searchCommand;
+	int example;
+  
+	char *searchCommand;
+	char *syncCommand;
+	char *installCommand;
+	char *removeCommand;
+	char *cleanCommand;
 
-	switch( example )
-	{
-		case 'S' : case 's':
-			strcpy(command, searchCommand);
-			break;
-		default :
-			help();
-			break;
+	if (strcmp(switches, "s") == 0 || 
+			strcmp(switches, "S") == 0 ||
+			strcmp(switches, "-s") == 0 ||
+			strcmp(switches, "-S") == 0){
+		strcpy(command, searchCommand);
 	}
 
+	else if (strcmp(switches, "i") == 0 ||
+			strcmp(switches, "I") == 0 ||
+			strcmp(switches, "-i") == 0 ||
+			strcmp(switches, "-I") == 0){
+		strcpy(command, installCommand);
+	}
 
-	
-	
 	
 	////////////////////////////////////////
 
