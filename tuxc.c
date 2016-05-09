@@ -39,8 +39,7 @@ int main(int argc, char *argv[])
 			break;
 		}
 	}
-
-  
+ 
 	if (argv[1] && strlen(argv[1]) < SWITCHLENGTH){
 		strcpy(switches, argv[1]);
 	}
@@ -49,14 +48,6 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	// Add package manager specific shit here
-
-	// Probably just use some sort of struct
-	
-
-	////////////////////////////////////////
-
-	// placeholders
   if (argv[2] && strlen(argv[2]) < PACKAGELENGTH){
 		strcpy(package, argv[2]);
 	}
@@ -64,21 +55,41 @@ int main(int argc, char *argv[])
 		help();
 		return 1;
 	}
-	// end placeholders
 
-  strcat(command, pkgMgr);
-	strcat(command, " ");
-	strcat(command, switches);
+	// Load package manager specific shit here
+
+	// Probably just use some sort of struct
+	// make command = the base command... So if someone does 'tuxc s foobar'
+	// in the case of XBPS, command will equal "xbps-query -Rs" We add the space later
+  
+	int example = 'A';
+  char *searchCommand;
+
+	switch( example )
+	{
+		case 'S' : case 's':
+			strcpy(command, searchCommand);
+			break;
+		default :
+			help();
+			break;
+	}
+
+
+	
+	
+	
+	////////////////////////////////////////
+
+	
 	strcat(command, " ");
 	strcat(command, package);
-  if (DEBUG==TRUE){
+  
+	if (DEBUG==TRUE){
 		printf("%s\n", command);
 	}
 	
 //	system(command);
-  printf("%d and %s\n",argc, argv[1]);	
-	printf("the size of argv[1] is %lu\n", strlen(argv[1]));
-	
 	return 0;
 }
 
