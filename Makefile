@@ -1,8 +1,8 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = tuxc.c
+OBJS = tuxc.c lib/logenlib.c
 
 #CC specifies which compiler to use
-CC = cc 
+CC = clang
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppress all warnings
