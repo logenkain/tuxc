@@ -17,4 +17,6 @@ OBJ_NAME= tuxc
 #This is the target that compiles our executable
 all	:	$(OBJS)
 	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+clean :
+	rm tuxc
 

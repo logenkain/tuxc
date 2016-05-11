@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
 #include "lib/logenlib.h"
@@ -9,7 +8,6 @@
 #define PACKAGELENGTH 50
 #define TRUE 1
 #define FALSE 0
-
 
 void help(void);
 
