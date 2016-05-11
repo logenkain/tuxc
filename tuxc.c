@@ -28,16 +28,16 @@ int main(int argc, char *argv[])
 	  "xbps-install", "apt-get",
 	  "pacman", "yum"
   };
-	
+
 	//Check which package manager exists
 	for (i=0; i < sizeof(packageManagers) / sizeof(packageManagers[0]); i++) {
-    
+
 		if (check_bin(packageManagers[i],DEBUG ) == 0){
 			pkgMgr = packageManagers[i];
 			break;
 		}
 	}
- 
+
 	if (argv[1] && strlen(argv[1]) < SWITCHLENGTH){
 		strcpy(switches, argv[1]);
 	}
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
 	// make command = the base command... So if someone does 'tuxc s foobar'
 	// in the case of XBPS, command will equal "xbps-query -Rs" We add the space later
-  
+
 	char *searchCommand;
 	char *syncCommand;
 	char *installCommand;
@@ -83,9 +83,9 @@ int main(int argc, char *argv[])
 	/*End temporary code
 	 */
 
-	if (strcmp(switches, "s") == 0 || 
+	if (strcmp(switches, "s") == 0 ||
 			strcmp(switches, "-s") == 0 ||
-			strcmp(switches, "-search") == 0 ||
+			strcmp(switches, "search") == 0 ||
 			strcmp(switches, "--search") == 0){
 		strcpy(command, searchCommand);
 	}
@@ -134,16 +134,16 @@ int main(int argc, char *argv[])
 	}
 
 
-	
+
 	else{
 		help();
 		return 1;
 	}
 
-	
+
 	////////////////////////////////////////
 
-	
+
 	/*Prevent catting an empty variable
 	 */
 
@@ -151,11 +151,11 @@ int main(int argc, char *argv[])
 		strcat(command, " ");
 	  strcat(command, package);
 	}
-  
+
 	if (DEBUG==TRUE){
 		printf("%s\n", command);
 	}
-	
+
 	system(command);
 	return 0;
 }
