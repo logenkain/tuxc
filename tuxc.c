@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include "lib/logenlib.h"
 
-#define MAXLINE 1024
+#define MAXLINE 2048
 #define SWITCHLENGTH 10
-#define PACKAGELENGTH 50
+#define PACKAGELENGTH 1000
 #define TRUE 1
 #define FALSE 0
 
@@ -46,9 +46,21 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-  if (argv[2] && strlen(argv[2]) < PACKAGELENGTH){
+	 if (argv[2] && strlen(argv[2]) < PACKAGELENGTH){
 		strcpy(package, argv[2]);
+
+		for (i=3; i < argc; i++){
+			if (strlen(package) + strlen(argv[i]) + 1 < PACKAGELENGTH){
+					strcat(package, " ");
+					strcat(package, argv[i]);
+			}
+			else{
+				printf("Too many packages, chill out bro\n");
+				return 1;
+			}
+		}
 	}
+	
 	else if (strcmp(argv[1], "s")){
 		//do nothing
 	}
@@ -133,16 +145,12 @@ int main(int argc, char *argv[])
 		strcpy(command, cleanCommand);
 	}
 
-
-
 	else{
 		help();
 		return 1;
 	}
 
-
 	////////////////////////////////////////
-
 
 	/*Prevent catting an empty variable
 	 */
