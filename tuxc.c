@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	
+
 	else if (strcmp(argv[1], "s")){
 		//do nothing
 	}
@@ -171,5 +171,15 @@ int main(int argc, char *argv[])
 //***********Definitions*************
 
 void help(void){
-	printf("This is the future help file!!!\n");
+	printf("\n\n");
+	printf("Usage: tuxc [options] [packages]\n\n");
+
+	printf("\ti  | -i | install    Install Package(s)\n");
+	printf("\tri | -ri| reinstall  Reinstall Package(s)\n");
+	printf("\tr  | -r | remove     Remove Package(s)\n");
+	printf("\ts  | -s | search     Search for Packages\n");
+	printf("\tp  | -p | purge      Remove package(s) and associated files\n");
+	printf("\tu  | -u | upgrade    Perform System Upgrade\n");
+	printf("\tc  | -c | clean      Clean Package Cache\n");
+	printf("\tsu | su | sup        Sync and Upgrade\n\n");
 }
