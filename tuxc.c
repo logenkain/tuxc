@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	
+
 	else if (strcmp(argv[1], "s")){
 		//do nothing
 	}
@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
 	char *cleanCommand;
 	char *purgeCommand;
 	char *upgradeCommand;
+	char *supCommand;
 
 /* The following will be praised from a file in the future
  * this is only temporary
@@ -91,6 +92,7 @@ int main(int argc, char *argv[])
 	purgeCommand = "xbps-remove -R";
 	upgradeCommand = "xbps-install -Su";
 	cleanCommand="xbps-remove -O";
+	supCommand="xbps-install -Su";
 
 	/*End temporary code
 	 */
@@ -145,6 +147,13 @@ int main(int argc, char *argv[])
 		strcpy(command, cleanCommand);
 	}
 
+	else if (strcmp(switches, "sup") == 0 ||
+			strcmp(switches, "-Su") == 0 ||
+			strcmp(switches, "su") == 0 ||
+			strcmp(switches, "--sync-upgrade") == 0){
+		strcpy(command, supCommand);
+	}
+	
 	else{
 		help();
 		return 1;
