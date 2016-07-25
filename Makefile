@@ -1,3 +1,5 @@
+PREFIX=/usr
+
 #OBJS specifies which files to compile as part of the project
 OBJS = tuxc.c lib/liblogen.a
 
@@ -18,15 +20,15 @@ OBJ_NAME= tuxc
 all	:	$(OBJS)
 	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 install :
-	mkdir /usr/share/tuxc
-	cp tuxc /usr/share/tuxc/
-	cp -R package_managers /usr/share/tuxc/
-	ln -si /usr/share/tuxc/tuxc /usr/bin/tux
+	mkdir -p ${PREFIX}/share/tuxc
+	cp tuxc ${PREFIX}/share/tuxc/
+	cp -R package_managers ${PREFIX}/share/tuxc/
+	ln -si ${PREFIX}/share/tuxc/tuxc ${PREFIX}/bin/tux
 uninstall :
-	rm /usr/bin/tux
-	rm -r /usr/share/tuxc/package_managers
-	rm /usr/share/tuxc/tuxc
-	rm -r /usr/share/tuxc
+	rm ${PREFIX}/bin/tux
+	rm -r ${PREFIX}/share/tuxc/package_managers
+	rm ${PREFIX}/share/tuxc/tuxc
+	rm -r ${PREFIX}/share/tuxc
 clean :
 	rm tuxc
 
