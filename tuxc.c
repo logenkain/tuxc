@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 	char upgradeCommand[50]="upgradeCommand";
 	char supCommand[50]="supCommand";
 
-	char *filename = "/package_managers/xbps-install";
+	char *filename = "./package_managers/xbps-install";
 
 
 	load_config(filename, 9, &searchCommand, &syncCommand, &installCommand,
@@ -94,6 +94,9 @@ int main(int argc, char *argv[])
 			strcmp(switches, "search") == 0 ||
 			strcmp(switches, "--search") == 0){
 		strcpy(command, searchCommand);
+		if (argc < 3){
+			strcat(command, " \"\"");
+		}
 	}
 
 	else if (strcmp(switches, "sy") == 0 ||
@@ -106,30 +109,45 @@ int main(int argc, char *argv[])
 			strcmp(switches, "-i") == 0 ||
 			strcmp(switches, "install") == 0 ||
 			strcmp(switches, "--install") == 0){
+		if (argc < 3){
+			help();
+		}
 		strcpy(command, installCommand);
 	}
 	else if (strcmp(switches, "ri") == 0 ||
 			strcmp(switches, "-ri") == 0 ||
 			strcmp(switches, "reinstall") == 0 ||
 			strcmp(switches, "--reinstall") == 0){
+		if (argc < 3){
+			help();
+		}
 		strcpy(command, reinstallCommand);
 	}
 	else if (strcmp(switches, "r") == 0 ||
 			strcmp(switches, "-r") == 0 ||
 			strcmp(switches, "remove") == 0 ||
 			strcmp(switches, "--remove") == 0){
+		if (argc < 3){
+			help();
+		}
 		strcpy(command, removeCommand);
 	}
 	else if (strcmp(switches, "p") == 0 ||
 			strcmp(switches, "-p") == 0 ||
 			strcmp(switches, "purge") == 0 ||
 			strcmp(switches, "--purge") == 0){
+		if (argc < 3){
+			help();
+		}
 		strcpy(command, purgeCommand);
 	}
 	else if (strcmp(switches, "u") == 0 ||
 			strcmp(switches, "-u") == 0 ||
 			strcmp(switches, "upgrade") == 0 ||
 			strcmp(switches, "--upgrade") == 0){
+		if (argc < 3){
+			help();
+		}
 		strcpy(command, upgradeCommand);
 	}
 	else if (strcmp(switches, "c") == 0 ||
@@ -162,7 +180,7 @@ int main(int argc, char *argv[])
 	}
 
 	if (DEBUG==TRUE){
-		printf("%s\n", command);
+		printf("The complete command is: %s\n", command);
 	}
 
 	system(command);
@@ -183,4 +201,5 @@ void help(void){
 	printf("\tu  | -u | upgrade    Perform System Upgrade\n");
 	printf("\tc  | -c | clean      Clean Package Cache\n");
 	printf("\tsu | su | sup        Sync and Upgrade\n\n");
+	exit(0);
 }
