@@ -149,6 +149,12 @@ int main(int argc, char *argv[])
 			strcmp(switches, "search") == 0 ||
 			strcmp(switches, "--search") == 0){
 		strcpy(command, searchCommand);
+		
+		if (argc > 3){
+			printf("\nSearch command only takes one argument!\n\n");
+			exit(1);
+		}
+		
 		if (argc < 3){
 			strcat(command, " \"\"");
 		}
