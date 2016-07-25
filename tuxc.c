@@ -70,32 +70,24 @@ int main(int argc, char *argv[])
 	// make command = the base command... So if someone does 'tuxc s foobar'
 	// in the case of XBPS, command will equal "xbps-query -Rs" We add the space later
 
-	char *searchCommand;
-	char *syncCommand;
-	char *installCommand;
-	char *reinstallCommand;
-	char *removeCommand;
-	char *cleanCommand;
-	char *purgeCommand;
-	char *upgradeCommand;
-	char *supCommand;
+	char searchCommand[50]="searchCommand";
+	char syncCommand[50]="syncCommand";
+	char installCommand[50]="installCommand";
+	char reinstallCommand[50]="reinstallCommand";
+	char removeCommand[50]="removeCommand";
+	char cleanCommand[50]="cleanCommand";
+	char purgeCommand[50]="purgeCommand";
+	char upgradeCommand[50]="upgradeCommand";
+	char supCommand[50]="supCommand";
 
-/* The following will be praised from a file in the future
- * this is only temporary
- */
+	char *filename = "/package_managers/xbps-install";
 
-	searchCommand = "xbps-query -Rs";
-	syncCommand = "xbps-install -S";
-	installCommand = "xbps-install";
-	reinstallCommand = "xbps-install -f";
-	removeCommand = "xbps-remove";
-	purgeCommand = "xbps-remove -R";
-	upgradeCommand = "xbps-install -Su";
-	cleanCommand="xbps-remove -O";
-	supCommand="xbps-install -Su";
 
-	/*End temporary code
-	 */
+	load_config(filename, 9, &searchCommand, &syncCommand, &installCommand,
+													&reinstallCommand, &removeCommand, &cleanCommand, 
+													&purgeCommand, &upgradeCommand, &supCommand);
+
+
 
 	if (strcmp(switches, "s") == 0 ||
 			strcmp(switches, "-s") == 0 ||

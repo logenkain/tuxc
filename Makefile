@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = tuxc.c lib/logenlib.c
+OBJS = tuxc.c lib/liblogen.a
 
 #CC specifies which compiler to use
 CC = clang
@@ -9,7 +9,7 @@ CC = clang
 COMPILER_FLAGS = -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS =
+LINKER_FLAGS = -llua
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME= tuxc
