@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "lib/logenlib.h"
+#include <dirent.h>
 
 #define MAXLINE 2048
 #define SWITCHLENGTH 10
@@ -13,7 +14,7 @@ void help(void);
 
 /* Must be set to FALSE for production!!!
  */
-int DEBUG=FALSE;
+int DEBUG=TRUE;
 
 //Main
 
@@ -26,15 +27,51 @@ int main(int argc, char *argv[])
 	char command[MAXLINE];
 
 	//Add package managers to check for
-  char *packageManagers[] = {
-	  "xbps-install", "apt-get",
-	  "pacman", "yum"
-  };
+  char *packageManagers[25];
+
+	//make this a function
+	
+	char *template_path;
+	template_path = "package_managers";
+	DIR *d;
+  struct dirent *dir;
+
+	d = opendir(template_path);
+
+	if (!d){
+		template_path = "/usr/share/tuxc/package_managers";
+		closedir(d);
+		d = opendir(template_path);
+	}
+		
+	if (d)
+	{
+
+		i=0;
+		while ((dir = readdir(d)) != NULL)
+		{
+			if (strcmp(dir->d_name, "..") == 0 ||
+					strcmp(dir->d_name, ".") ==0 ){
+				continue;
+			}
+			
+			if (DEBUG == TRUE) {
+				printf("Added %s to array\n", dir->d_name);
+			}
+			
+			packageManagers[i] = dir->d_name;
+			i++;		
+		}
+		closedir(d);
+	}
+	//
+  
 
 	//Check which package manager exists
 	for (i=0; i < sizeof(packageManagers) / sizeof(packageManagers[0]); i++) {
 
-		if (check_bin(packageManagers[i],DEBUG ) == 0){
+		if (check_bin(packageManagers[i],DEBUG ) == 0)
+		{
 			pkgMgr = packageManagers[i];
 			break;
 		}
@@ -63,9 +100,6 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	else if (strcmp(argv[1], "s")){
-		//do nothing
-	}
 
 	// Load package manager specific shit here
 
@@ -82,24 +116,15 @@ int main(int argc, char *argv[])
 	char upgradeCommand[50]="upgradeCommand";
 	char supCommand[50]="supCommand";
   
-	char *filename;
+	char filepath[MAXLINE];
+	strcpy(filepath, template_path);
+	strcat(filepath, "/");
+	strcat(filepath, pkgMgr);
 
-	switch(DEBUG) {
-		case TRUE:
-			filename = "package_managers/xbps-install";
-			break;
-		case FALSE:
-			filename = "/usr/share/tuxc/package_managers/xbps-install";
-			break;
-		default:
-			filename = "/usr/share/tuxc/package_managers/xbps-install";
-			break;
+	if (DEBUG == TRUE){
+		printf("This is filepath: %s\n", filepath);
 	}
-
-	
-
-
-	load_config(filename, 9, &searchCommand, &syncCommand, &installCommand,
+	load_config(filepath, 9, &searchCommand, &syncCommand, &installCommand,
 													&reinstallCommand, &removeCommand, &cleanCommand, 
 													&purgeCommand, &upgradeCommand, &supCommand);
 
