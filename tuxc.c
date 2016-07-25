@@ -12,19 +12,18 @@
 
 void help(void);
 
-/* Must be set to FALSE for production!!!
- */
-int DEBUG=TRUE;
+// Set to TRUE for debug information
+int DEBUG=FALSE;
 
 //Main
 
 int main(int argc, char *argv[])
 {
 	int i;
-	char *pkgMgr;
 	char switches[SWITCHLENGTH];
 	char package[PACKAGELENGTH] = "FALSE";
 	char command[MAXLINE];
+	char filepath[MAXLINE];
 
 	//Add package managers to check for
   char *packageManagers[25];
@@ -46,7 +45,6 @@ int main(int argc, char *argv[])
 		
 	if (d)
 	{
-
 		i=0;
 		while ((dir = readdir(d)) != NULL)
 		{
@@ -60,19 +58,20 @@ int main(int argc, char *argv[])
 			}
 			
 			packageManagers[i] = dir->d_name;
-			i++;		
+			i++;
 		}
 		closedir(d);
 	}
 	//
-  
 
 	//Check which package manager exists
 	for (i=0; i < sizeof(packageManagers) / sizeof(packageManagers[0]); i++) {
 
 		if (check_bin(packageManagers[i],DEBUG ) == 0)
 		{
-			pkgMgr = packageManagers[i];
+			strcpy(filepath, template_path);
+			strcat(filepath, "/");
+			strcat(filepath, packageManagers[i]);
 			break;
 		}
 	}
@@ -100,12 +99,6 @@ int main(int argc, char *argv[])
 		}
 	}
 
-
-	// Load package manager specific shit here
-
-	// make command = the base command... So if someone does 'tuxc s foobar'
-	// in the case of XBPS, command will equal "xbps-query -Rs" We add the space later
-
 	char searchCommand[50]="searchCommand";
 	char syncCommand[50]="syncCommand";
 	char installCommand[50]="installCommand";
@@ -116,19 +109,12 @@ int main(int argc, char *argv[])
 	char upgradeCommand[50]="upgradeCommand";
 	char supCommand[50]="supCommand";
   
-	char filepath[MAXLINE];
-	strcpy(filepath, template_path);
-	strcat(filepath, "/");
-	strcat(filepath, pkgMgr);
-
 	if (DEBUG == TRUE){
 		printf("This is filepath: %s\n", filepath);
 	}
 	load_config(filepath, 9, &searchCommand, &syncCommand, &installCommand,
 													&reinstallCommand, &removeCommand, &cleanCommand, 
 													&purgeCommand, &upgradeCommand, &supCommand);
-
-
 
 	if (strcmp(switches, "s") == 0 ||
 			strcmp(switches, "-s") == 0 ||
