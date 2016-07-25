@@ -11,7 +11,9 @@
 
 void help(void);
 
-int DEBUG=TRUE;
+/* Must be set to FALSE for production!!!
+ */
+int DEBUG=FALSE;
 
 //Main
 
@@ -79,8 +81,22 @@ int main(int argc, char *argv[])
 	char purgeCommand[50]="purgeCommand";
 	char upgradeCommand[50]="upgradeCommand";
 	char supCommand[50]="supCommand";
+  
+	char *filename;
 
-	char *filename = "./package_managers/xbps-install";
+	switch(DEBUG) {
+		case TRUE:
+			filename = "package_managers/xbps-install";
+			break;
+		case FALSE:
+			filename = "/usr/share/tuxc/package_managers/xbps-install";
+			break;
+		default:
+			filename = "/usr/share/tuxc/package_managers/xbps-install";
+			break;
+	}
+
+	
 
 
 	load_config(filename, 9, &searchCommand, &syncCommand, &installCommand,
