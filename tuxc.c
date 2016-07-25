@@ -20,10 +20,12 @@ int DEBUG=FALSE;
 int main(int argc, char *argv[])
 {
 	int i;
+	int	PKG_MGR_FOUND = FALSE;
 	char switches[SWITCHLENGTH];
 	char package[PACKAGELENGTH] = "FALSE";
 	char command[MAXLINE];
 	char filepath[MAXLINE];
+	int number_of_package_managers = 0;
 
 	//Add package managers to check for
   char *packageManagers[25];
@@ -48,32 +50,58 @@ int main(int argc, char *argv[])
 		i=0;
 		while ((dir = readdir(d)) != NULL)
 		{
-			if (strcmp(dir->d_name, "..") == 0 ||
-					strcmp(dir->d_name, ".") ==0 ){
+			
+			if (strcmp(dir->d_name, ".") == 0 ||
+					strcmp(dir->d_name, "..") == 0)
+			{
 				continue;
 			}
+			else{
 			
-			if (DEBUG == TRUE) {
-				printf("Added %s to array\n", dir->d_name);
+				packageManagers[i] = dir->d_name;
+
+				if (DEBUG == TRUE) {
+				  printf("Added %s to array\n", packageManagers[i]);
+			  }
+
+				i++;
+				number_of_package_managers = i;
 			}
-			
-			packageManagers[i] = dir->d_name;
-			i++;
+
 		}
+	
+		
 		closedir(d);
 	}
+	
 	//
 
 	//Check which package manager exists
-	for (i=0; i < sizeof(packageManagers) / sizeof(packageManagers[0]); i++) {
-
+	for (i=0; i < number_of_package_managers; i++) {
+		
 		if (check_bin(packageManagers[i],DEBUG ) == 0)
 		{
+			PKG_MGR_FOUND = TRUE;
 			strcpy(filepath, template_path);
 			strcat(filepath, "/");
 			strcat(filepath, packageManagers[i]);
+			
+			if (DEBUG == TRUE){
+				printf("%s\n", filepath);
+			}
+			
 			break;
 		}
+	}
+
+	if (PKG_MGR_FOUND == FALSE){
+		printf("\nYou're distribution package manager was not found\n");
+		printf("Chances are that you use some crazy esoteric Linux Distro\n");
+		printf("Feel free to send me an email via my contract form at: \n");
+		printf("sudotask.com/contact-us \n");
+		printf("or simply hack your own template file at:\n\n");
+		exit(0);
+
 	}
 
 	if (argv[1] && strlen(argv[1]) < SWITCHLENGTH){
