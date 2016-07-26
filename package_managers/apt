@@ -1,7 +1,9 @@
-#Replace commands as appropriate
-
-searchCommand = apt search
-installCommand = apt install
-syncCommand = apt update
-removeCommand = apt remove
-cleanCommand = null
+searchCommand = "apt search"
+syncCommand = "apt update"
+installCommand = "apt install"
+reinstallCommand = "apt install --reinstall"
+removeCommand = "apt remove"
+purgeCommand = "apt remove --purge"
+upgradeCommand = "apt upgrade"
+cleanCommand="apt autoremove"
+supCommand="apt update && apt upgrade"
