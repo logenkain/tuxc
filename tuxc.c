@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 		printf("Feel free to send me an email via my contract form at: \n");
 		printf("sudotask.com/contact-us \n");
 		printf("or simply hack your own template file at:\n\n");
-		printf("/usr/share/tuxc/package_managers");
+		printf("/usr/share/tuxc/package_managers\n");
 		exit(0);
 
 	}
