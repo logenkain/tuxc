@@ -1,6 +1,6 @@
 #ifndef LOGENLIB_H_INCLUDED
 #define LOGENLIB_H_INCLUDED
-#include<lua5.3/lua.h>
+#include<lua.h>
 
 /**
  * Check common bin files (does not use PATH variable
