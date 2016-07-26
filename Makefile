@@ -11,7 +11,7 @@ CC = clang
 COMPILER_FLAGS = -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -llua
+LINKER_FLAGS = -llua5.3
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME= tuxc
