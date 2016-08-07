@@ -1,1 +1,4 @@
 Add Force Remove and update help
+
+
+Add grep (or something) to add color to the searched for term. Possibly make this an option. If so, make a config file for this and DEBUG.
