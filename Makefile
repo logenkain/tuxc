@@ -4,7 +4,7 @@ PREFIX=/usr
 OBJS = tuxc.c lib/logenlib.c
 
 #CC specifies which compiler to use
-CC = clang
+#CC = clang
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppress all warnings
