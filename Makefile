@@ -11,7 +11,7 @@ OBJS = tuxc.c lib/logenlib.c
 COMPILER_FLAGS = -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -llua
+LINKER_FLAGS = -llua5.2 -I/usr/include/lua5.2/
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME= tuxc
