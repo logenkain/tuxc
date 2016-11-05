@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
   char *packageManagers[25];
 
 	//make this a function
-	
+
 	char *template_path;
 	template_path = "package_managers";
 	DIR *d;
@@ -44,20 +44,20 @@ int main(int argc, char *argv[])
 		closedir(d);
 		d = opendir(template_path);
 	}
-		
+
 	if (d)
 	{
 		i=0;
 		while ((dir = readdir(d)) != NULL)
 		{
-			
+
 			if (strcmp(dir->d_name, ".") == 0 ||
 					strcmp(dir->d_name, "..") == 0)
 			{
 				continue;
 			}
 			else{
-			
+
 				packageManagers[i] = dir->d_name;
 
 				if (DEBUG == TRUE) {
@@ -69,27 +69,27 @@ int main(int argc, char *argv[])
 			}
 
 		}
-	
-		
+
+
 		closedir(d);
 	}
-	
+
 	//
 
 	//Check which package manager exists
 	for (i=0; i < number_of_package_managers; i++) {
-		
+
 		if (check_bin(packageManagers[i],DEBUG ) == 0)
 		{
 			PKG_MGR_FOUND = TRUE;
 			strcpy(filepath, template_path);
 			strcat(filepath, "/");
 			strcat(filepath, packageManagers[i]);
-			
+
 			if (DEBUG == TRUE){
 				printf("%s\n", filepath);
 			}
-			
+
 			break;
 		}
 	}
@@ -137,12 +137,12 @@ int main(int argc, char *argv[])
 	char purgeCommand[50]="purgeCommand";
 	char upgradeCommand[50]="upgradeCommand";
 	char supCommand[50]="supCommand";
-  
+
 	if (DEBUG == TRUE){
 		printf("This is filepath: %s\n", filepath);
 	}
 	load_config(filepath, 9, &searchCommand, &syncCommand, &installCommand,
-													&reinstallCommand, &removeCommand, &cleanCommand, 
+													&reinstallCommand, &removeCommand, &cleanCommand,
 													&purgeCommand, &upgradeCommand, &supCommand);
 
 	if (strcmp(switches, "s") == 0 ||
@@ -150,12 +150,12 @@ int main(int argc, char *argv[])
 			strcmp(switches, "search") == 0 ||
 			strcmp(switches, "--search") == 0){
 		strcpy(command, searchCommand);
-		
+
 		if (argc > 3){
 			printf("\nSearch command only takes one argument!\n\n");
 			exit(1);
 		}
-		
+
 		if (argc < 3){
 			strcat(command, " \"\"");
 		}
@@ -225,7 +225,7 @@ int main(int argc, char *argv[])
 			strcmp(switches, "--sync-upgrade") == 0){
 		strcpy(command, supCommand);
 	}
-	
+
 	else{
 		help();
 		return 1;
@@ -253,15 +253,19 @@ int main(int argc, char *argv[])
 
 void help(void){
 	printf("\n\n");
-	printf("Usage: tuxc [options] [packages]\n\n");
 
-	printf("\ti  | -i | install    Install Package(s)\n");
-	printf("\tri | -ri| reinstall  Reinstall Package(s)\n");
-	printf("\tr  | -r | remove     Remove Package(s)\n");
-	printf("\ts  | -s | search     Search for Packages\n");
-	printf("\tp  | -p | purge      Remove package(s) and associated files\n");
-	printf("\tu  | -u | upgrade    Perform System Upgrade\n");
-	printf("\tc  | -c | clean      Clean Package Cache\n");
-	printf("\tsu | su | sup        Sync and Upgrade\n\n");
+	printf("Tux: a drop in package manager wrapper\n\n");
+
+	printf("Usage: tux [options] [packages]\n\n");
+
+  printf("\t[Options]       [Description]\n\n");
+	printf("\ti  | install    Install Package(s)\n");
+	printf("\tri | reinstall  Reinstall Package(s)\n");
+	printf("\tr  | remove     Remove Package(s)\n");
+	printf("\ts  | search     Search for Packages\n");
+	printf("\tp  | purge      Remove package(s) and associated files\n");
+	printf("\tu  | upgrade    Perform System Upgrade\n");
+	printf("\tc  | clean      Clean Package Cache\n");
+	printf("\tsu | sup        Sync and Upgrade\n\n");
 	exit(0);
 }
