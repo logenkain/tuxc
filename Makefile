@@ -20,15 +20,15 @@ OBJ_NAME= tuxc
 all	:	$(OBJS)
 	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 install :
-	mkdir -p ${PREFIX}/share/tuxc
-	cp tuxc ${PREFIX}/share/tuxc/
-	cp -R package_managers ${PREFIX}/share/tuxc/
-	ln -si ${PREFIX}/share/tuxc/tuxc ${PREFIX}/bin/tux
+	mkdir -p ${PREFIX}/share/${OBJ_NAME}
+	cp tuxc ${PREFIX}/share/${OBJ_NAME}/
+	cp -R package_managers ${PREFIX}/share/${OBJ_NAME}/
+	ln -si ${PREFIX}/share/${OBJ_NAME}/${OBJ_NAME} ${PREFIX}/bin/tux
 uninstall :
 	rm ${PREFIX}/bin/tux
-	rm -r ${PREFIX}/share/tuxc/package_managers
-	rm ${PREFIX}/share/tuxc/tuxc
-	rm -r ${PREFIX}/share/tuxc
+	rm -r ${PREFIX}/share/${OBJ_NAME}/package_managers
+	rm ${PREFIX}/share/${OBJ_NAME}/${OBJ_NAME}
+	rm -r ${PREFIX}/share/${OBJ_NAME}
 clean :
-	rm tuxc
+	rm ${OBJ_NAME}
 
