@@ -94,11 +94,13 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	/*This should be a bug tracker, not my email. Fix once ported to not gitbutter.pw*/
+
 	if (PKG_MGR_FOUND == FALSE){
 		printf("\nYou're distribution package manager was not found\n");
 		printf("Chances are that you use some crazy esoteric Linux Distro\n");
-		printf("Feel free to send me an email via my contract form at: \n");
-		printf("sudotask.com/contact-us \n");
+		printf("Feel free to send me an email at: \n");
+		printf("logen@sudotask.com\n");
 		printf("or simply hack your own template file at:\n\n");
 		printf("/usr/share/tuxc/package_managers\n");
 		exit(0);

@@ -2,3 +2,7 @@ Add Force Remove and update help
 
 
 Add grep (or something) to add color to the searched for term. Possibly make this an option. If so, make a config file for this and DEBUG.
+
+On release (put on github or something) change TEMPLATE-NOT-FOUND error message to direct people to a bug tracker instead of my email.
+
+Not sure if gitblit has a bug tracker, if it does, change it to that for now.
