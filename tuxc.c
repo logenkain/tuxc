@@ -209,10 +209,7 @@ int main(int argc, char *argv[])
 			strcmp(switches, "-u") == 0 ||
 			strcmp(switches, "upgrade") == 0 ||
 			strcmp(switches, "--upgrade") == 0){
-		if (argc < 3){
-			help();
-		}
-		strcpy(command, upgradeCommand);
+			strcpy(command, upgradeCommand);
 	}
 	else if (strcmp(switches, "c") == 0 ||
 			strcmp(switches, "-c") == 0 ||
