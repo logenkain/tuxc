@@ -31,7 +31,7 @@ function getDeps() {
 
 
 function installTuxc() {
-  if [ ! -f ./tuxc ];then
+  if [ ! -f /usr/bin/tux ];then
       printf "${LGREEN}Building executable...${NC}\n"
       make
       printf "${LGREEN}Installing...${NC}\n"
