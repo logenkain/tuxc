@@ -143,9 +143,9 @@ int main(int argc, char *argv[])
 	if (DEBUG == TRUE){
 		printf("This is filepath: %s\n", filepath);
 	}
-	load_config(filepath, 9, &searchCommand, &syncCommand, &installCommand,
-													&reinstallCommand, &removeCommand, &cleanCommand,
-													&purgeCommand, &upgradeCommand, &supCommand);
+	load_config(filepath, 9, searchCommand, syncCommand, installCommand,
+													reinstallCommand, removeCommand, cleanCommand,
+													purgeCommand, upgradeCommand, supCommand);
 
 	if (strcmp(switches, "s") == 0 ||
 			strcmp(switches, "-s") == 0 ||
