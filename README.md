@@ -13,6 +13,7 @@
 * lua5.2-dev
 * clang (edit to use gcc)
 * make
+* pkg-config
 
 ### Distro specific
 
