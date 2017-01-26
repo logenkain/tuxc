@@ -12,7 +12,7 @@ CC = clang
 COMPILER_FLAGS = -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = `pkg-config --cflags --libs lua`
+LINKER_FLAGS = `pkg-config --cflags --libs lua5.3`
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME = tuxc
