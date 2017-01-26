@@ -29,8 +29,6 @@ void l_error (lua_State *L, const char *fmt, ...);
  */
 void load_config(char *filename, int number_of_args, ...);
 
-
-
 int check_bin(char *file, int debug)
 {
 
@@ -45,13 +43,11 @@ int check_bin(char *file, int debug)
 	dirs[3] = "/usr/sbin/";
 	dirs[4] = "/sbin/";
 	dirs[5] = "/bin/";
-
 	
 	for (i=0; i<5; i++ ){
 		
 		strcpy(path, dirs[i]);
 		strcat(path,file);
-		
 		
 		if (access( path, F_OK ) != -1 ) {
 			flag = 1;
