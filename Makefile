@@ -1,3 +1,4 @@
+SHELL=/bin/sh
 PREFIX=/usr
 
 #OBJS specifies which files to compile as part of the project
@@ -11,7 +12,7 @@ CC = clang
 COMPILER_FLAGS = -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -llua5.2 -I/usr/include/lua5.2/
+LINKER_FLAGS = `pkg-config --cflags --libs lua`
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME = tuxc
