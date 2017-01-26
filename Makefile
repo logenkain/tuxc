@@ -22,13 +22,11 @@ all	:	$(OBJS)
 install :
 	mkdir -p ${DESTDIR}${PREFIX}/share/${OBJ_NAME}
 	mkdir -p ${DESTDIR}${PREFIX}/bin
-	cp -f ${OBJ_NAME} ${DESTDIR}${PREFIX}/share/${OBJ_NAME}/${OBJ_NAME}
+	cp -f ${OBJ_NAME} ${DESTDIR}${PREFIX}/bin/tux
 	cp -R -f package_managers ${DESTDIR}${PREFIX}/share/${OBJ_NAME}/package_managers
-	ln -s ${DESTDIR}${PREFIX}/share/${OBJ_NAME}/${OBJ_NAME} ${DESTDIR}${PREFIX}/bin/tux
 uninstall :
-	unlink ${DESTDIR}${PREFIX}/bin/tux
+	rm ${DESTDIR}${PREFIX}/bin/tux
 	rm -r ${DESTDIR}${PREFIX}/share/${OBJ_NAME}/package_managers
-	rm ${DESTDIR}${PREFIX}/share/${OBJ_NAME}/${OBJ_NAME}
-	rm -r ${DESTDIR}${PREFIX}/share/${OBJ_NAME}
+	rmdir ${DESTDIR}${PREFIX}/share/${OBJ_NAME}
 clean :
 	rm ${OBJ_NAME}
