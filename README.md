@@ -9,9 +9,9 @@
 ### Dependencies  
 
 * git
-* lua5.2
-* lua5.2-dev
-* clang (edit to use gcc)
+* lua5.3
+* lua5.3-dev
+* clang ('make CC=gcc' to use gcc)
 * make
 * pkg-config
 
@@ -20,19 +20,19 @@
 #### Ubuntu/debian  
 
 ```  
-sudo apt-get install git make clang lua5.2 lua5.2-dev  
+sudo apt-get install git make clang lua5.3 lua5.3-dev  
 ```  
 
 #### Arch Linux  
 
 ```
-sudo pacman -Sy git make clang lua52  
+sudo pacman -Sy git make clang lua53  
 ```  
 
 #### Void Linux  
 
 ```  
-sudo xbps-install -S git make clang lua52 lua52-devel  
+sudo xbps-install -S git make clang lua53 lua53-devel  
 ```
 
 ### Build
@@ -67,10 +67,3 @@ Usage: tux [options] [packages]
 	u  | upgrade    Perform System Upgrade
 	c  | clean      Clean Package Cache
 	su | sup        Sync and Upgrade  
-
-
-
-
-    
-
-
