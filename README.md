@@ -20,7 +20,7 @@
 #### Ubuntu/debian  
 
 ```  
-sudo apt-get install git make clang lua5.3 lua5.3-dev  
+sudo apt-get install git make clang lua5.3 liblua5.3-dev  
 ```  
 
 #### Arch Linux  
