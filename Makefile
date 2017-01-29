@@ -1,5 +1,5 @@
-SHELL=/bin/sh
-PREFIX=/usr
+SHELL = /bin/sh
+PREFIX ?= /usr
 
 #OBJS specifies which files to compile as part of the project
 OBJS = tuxc.c lib/logenlib.c
@@ -19,7 +19,7 @@ OBJ_NAME = tuxc
 
 #This is the target that compiles our executable
 all	:	$(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+	$(CC) $(OBJS) $(CFLAGS) $(COMPILER_FLAGS) $(LDFLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 install :
 	mkdir -p ${DESTDIR}${PREFIX}/share/${OBJ_NAME}
 	mkdir -p ${DESTDIR}${PREFIX}/bin
