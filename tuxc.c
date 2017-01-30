@@ -58,7 +58,8 @@ int main(int argc, char *argv[])
 			}
 			else{
 
-				packageManagers[i] = dir->d_name;
+				packageManagers[i] = strdup(dir->d_name);
+
 
 				if (DEBUG == TRUE) {
 				  printf("Added %s to array\n", packageManagers[i]);
@@ -245,6 +246,8 @@ int main(int argc, char *argv[])
 	}
 
 	system(command);
+
+    for (i=0; i < number_of_package_managers; i++) free(packageManagers[i]);
 	return 0;
 }
 

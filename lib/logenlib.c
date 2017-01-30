@@ -15,39 +15,24 @@
 #include <lualib.h>
 #include <lua.h>
 
-
-/* Check if file exists in:
- * /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
- */
-int check_bin(char *file, int debug);
-
-// Handle lua errors
-void l_error (lua_State *L, const char *fmt, ...);    
-
-/*Load config files. Additional arguments should be char arrays or pointers
- * improve this lib by having it autodetect if number or letter
- */
-void load_config(char *filename, int number_of_args, ...);
-
 int check_bin(char *file, int debug)
 {
-
 	int flag=0;
-	int i;
 	char path[MAXLINE];
 
-	char *dirs[6];
-  dirs[0] = "/usr/local/sbin/";
-	dirs[1] = "/usr/local/bin/";
-	dirs[2] = "/usr/bin/";
-	dirs[3] = "/usr/sbin/";
-	dirs[4] = "/sbin/";
-	dirs[5] = "/bin/";
-	
-	for (i=0; i<5; i++ ){
-		
-		strcpy(path, dirs[i]);
-		strcat(path,file);
+	char *env_path = strdup(getenv("PATH"));
+	char *s = env_path;
+	char *p = NULL;
+	do {
+	    p = strchr(s, ':');
+
+	    if (p != NULL) {
+	        p[0] = 0;
+	    }
+
+	    strcpy(path, s);
+	    strcat(path, "/");
+		strcat(path, file);
 		
 		if (access( path, F_OK ) != -1 ) {
 			flag = 1;
@@ -55,8 +40,12 @@ int check_bin(char *file, int debug)
 				printf("%s FOUND @ %s. Ending check.\n", file, path);
 			}
 			break;
-			}
-	}
+		}
+
+	    s = p + 1;
+	} while (p != NULL);
+
+	free(env_path);
 	
 	if (flag == 1) {
 		return 0;
