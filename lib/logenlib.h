@@ -8,9 +8,6 @@
  */
 int check_bin(char *file, int debug);
 
-// Split string into array
-char** str_split(char* a_str, const char a_delim);
-
 // Handle lua errors
 void l_error (lua_State *L, const char *fmt, ...);    
 
