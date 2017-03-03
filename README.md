@@ -17,39 +17,68 @@
 
 ### Distro specific
 
-#### Ubuntu/debian  
+#### Ubuntu/Debian  
 
-```  
-sudo apt-get install git make pkg-config clang lua5.3 liblua5.3-dev  
+
+Tested on Debian 8 Jessie and Ubuntu 16.04  
+
+```
+$ git clone https://github.com/logenkain
+$ cd tuxc/INSTALL
+$ sudo debian-install.sh
+
 ```  
 
 #### Arch Linux  
 
 ```
-sudo pacman -Sy git make clang pkg-config lua53  
+$ sudo pacman -Sy git make clang pkg-config lua53
+
 ```  
 
 #### Void Linux  
 
 ```  
-sudo xbps-install -S git make pkg-config clang lua53 lua53-devel  
+sudo xbps-install -S tuxc 
+
 ```
 
-### Build
+###Build
 ```  
 git clone http://github.com/logenkain/tuxc.git  
 cd tuxc  
 make  
 make install  
+```    
+
+## Uninstall  
+
+### Ubuntu/Debian
+
+```
+$ cd tuxc/INSTALL
+$ sudo ./debian-uninstall.sh
+
+```
+
+### Arch Linux  
+
+```
+
+$ cd tuxc
+$ sudo make uninstall
+
 ```  
 
-### Packages  
+### Voice Linux  
 
-#### Void Linux  
+```
 
-```  
-sudo xbps-install -S tuxc  
-```  
+$ sudo xbps-remove tuxc
+
+```
+
+
 
 
 ## Usage  
