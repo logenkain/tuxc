@@ -70,7 +70,7 @@ $ sudo make uninstall
 
 ```  
 
-### Voice Linux  
+### Void Linux  
 
 ```
 
