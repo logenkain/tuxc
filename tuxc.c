@@ -188,7 +188,8 @@ int main(int argc, char *argv[])
 			strcmp(switches, "install") == 0 ||
 			strcmp(switches, "--install") == 0){
 		if (argc < 3){
-			help();
+			printf("install command requires at least one package!\n");
+			exit(0);
 		}
 		if (strcmp(installCommand, "") == 0){
 			printf("install command not set\n");
@@ -203,7 +204,8 @@ int main(int argc, char *argv[])
 			strcmp(switches, "reinstall") == 0 ||
 			strcmp(switches, "--reinstall") == 0){
 		if (argc < 3){
-			help();
+			printf("reinstall command requires at least one package!\n");
+			exit(0);
 		}
 		if (strcmp(reinstallCommand, "") == 0){
 			printf("reinstall command not set\n");
@@ -218,7 +220,8 @@ int main(int argc, char *argv[])
 			strcmp(switches, "remove") == 0 ||
 			strcmp(switches, "--remove") == 0){
 		if (argc < 3){
-			help();
+			printf("remove command requires at least one package!\n");
+			exit(0);
 		}
 		if (strcmp(removeCommand, "") == 0){
 			printf("remove command not set\n");
