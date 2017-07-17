@@ -152,7 +152,6 @@ int main(int argc, char *argv[])
 			strcmp(switches, "-s") == 0 ||
 			strcmp(switches, "search") == 0 ||
 			strcmp(switches, "--search") == 0){
-		strcpy(command, searchCommand);
 
 		if (argc > 3){
 			printf("\nSearch command only takes one argument!\n\n");
@@ -162,13 +161,27 @@ int main(int argc, char *argv[])
 		if (argc < 3){
 			strcat(command, " \"\"");
 		}
+		
+		if (strcmp(searchCommand, "") == 0){
+			printf("search command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, searchCommand);
+		}
 	}
 
 	else if (strcmp(switches, "sy") == 0 ||
 			strcmp(switches, "-sy") == 0 ||
 			strcmp(switches, "sync") == 0 ||
 			strcmp(switches, "--sync") == 0){
-		strcpy(command, syncCommand);
+		if (strcmp(syncCommand, "") == 0){
+			printf("sync command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, syncCommand);
+		}
 	}
 	else if (strcmp(switches, "i") == 0 ||
 			strcmp(switches, "-i") == 0 ||
@@ -177,7 +190,13 @@ int main(int argc, char *argv[])
 		if (argc < 3){
 			help();
 		}
-		strcpy(command, installCommand);
+		if (strcmp(installCommand, "") == 0){
+			printf("install command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, installCommand);
+		}
 	}
 	else if (strcmp(switches, "ri") == 0 ||
 			strcmp(switches, "-ri") == 0 ||
@@ -186,7 +205,13 @@ int main(int argc, char *argv[])
 		if (argc < 3){
 			help();
 		}
-		strcpy(command, reinstallCommand);
+		if (strcmp(reinstallCommand, "") == 0){
+			printf("reinstall command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, reinstallCommand);
+		}
 	}
 	else if (strcmp(switches, "r") == 0 ||
 			strcmp(switches, "-r") == 0 ||
@@ -195,7 +220,13 @@ int main(int argc, char *argv[])
 		if (argc < 3){
 			help();
 		}
-		strcpy(command, removeCommand);
+		if (strcmp(removeCommand, "") == 0){
+			printf("remove command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, removeCommand);
+		}
 	}
 	else if (strcmp(switches, "p") == 0 ||
 			strcmp(switches, "-p") == 0 ||
@@ -204,26 +235,52 @@ int main(int argc, char *argv[])
 		if (argc < 3){
 			help();
 		}
-		strcpy(command, purgeCommand);
+		
+		if (strcmp(purgeCommand, "") == 0){
+			printf("purge command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, purgeCommand);
+		}
 	}
 	else if (strcmp(switches, "u") == 0 ||
 			strcmp(switches, "-u") == 0 ||
 			strcmp(switches, "upgrade") == 0 ||
 			strcmp(switches, "--upgrade") == 0){
+		if (strcmp(upgradeCommand, "") == 0){
+			printf("upgrade command not set\n");
+			exit(0);
+		}
+		else{
 			strcpy(command, upgradeCommand);
+		}
 	}
 	else if (strcmp(switches, "c") == 0 ||
 			strcmp(switches, "-c") == 0 ||
 			strcmp(switches, "clean") == 0 ||
 			strcmp(switches, "--clean") == 0){
-		strcpy(command, cleanCommand);
+		if (strcmp(cleanCommand, "") == 0){
+			printf("clean command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, cleanCommand);
+		}
+		
 	}
 
 	else if (strcmp(switches, "sup") == 0 ||
 			strcmp(switches, "-Su") == 0 ||
 			strcmp(switches, "su") == 0 ||
 			strcmp(switches, "--sync-upgrade") == 0){
-		strcpy(command, supCommand);
+		if (strcmp(supCommand, "") == 0){
+			printf("sup command not set\n");
+			exit(0);
+		}
+		else{
+			strcpy(command, supCommand);
+		}
 	}
 
 	else{
