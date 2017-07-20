@@ -25,7 +25,8 @@ function checkRoot() {
 
 function getDeps() {
   printf "${LGREEN}Installing required dependencies...${NC}\n"
-
+  
+  apt-get update
   apt-get install -y clang make pkg-config lua5.3-dev
 }
 
