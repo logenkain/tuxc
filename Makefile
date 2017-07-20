@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 PREFIX ?= /usr
-
+LUA_53 = /usr/include/lua5.3
 #OBJS specifies which files to compile as part of the project
 OBJS = tuxc.c lib/logenlib.c
 
@@ -12,7 +12,13 @@ CC = clang
 COMPILER_FLAGS = -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = `pkg-config --cflags --libs lua5.3`
+
+ifeq ($(wildcard $(LUA_53)),) # No lua5.3 dir in /usr/include? Link without it!
+    LINKER_FLAGS = `pkg-config --cflags --libs lua`
+
+else # Hmm, I guess there was a 5.3 dir...probably Debian based.
+    LINKER_FLAGS = `pkg-config --cflags --libs lua5.3`
+endif
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME = tuxc
