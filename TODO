@@ -6,3 +6,6 @@ Add grep (or something) to add color to the searched for term. Possibly make thi
 On release (put on github or something) change TEMPLATE-NOT-FOUND error message to direct people to a bug tracker instead of my email.
 
 Not sure if gitblit has a bug tracker, if it does, change it to that for now.
+
+add ss option. This is "super search" basicaly it works like this.... <pkg-manager> <searchcommand> <pkg1> <pkg2> <pkg3>
+Every <pkg> after the first will result in a pipe to grep.
