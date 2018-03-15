@@ -43,7 +43,7 @@ sudo xbps-install -S tuxc
 
 ```
 
-###Build
+### Build
 ```  
 git clone http://github.com/logenkain/tuxc.git  
 cd tuxc  
@@ -97,7 +97,7 @@ Usage: tux [options] [packages]
 	c  | clean      Clean Package Cache
 	su | sup        Sync and Upgrade  
 	
-##Creating templates  
+## Creating templates  
 
 If you are using a distribution that Tuxc does not support, a blank template is provided to add support.  
 
