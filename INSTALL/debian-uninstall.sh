@@ -15,6 +15,9 @@ LPURPLE="\033[1;35m"
 BWHITE="\e[1m"
 NC='\033[0m' # No Color
 
+SOLUS="/usr/bin/eopkg"
+DEBIAN_UBUNTU="/usr/bin/apt"
+FEDORA="/usr/bin/dnf"
 
 function checkRoot() {
   if [[ $EUID -ne 0 ]]; then
@@ -64,7 +67,17 @@ function removeDeps() {
     read choice
 
     if [ "${choice}" = y ] || [ "${choice}" = Y ] || [ "${choice}" = yes ] || [ "${choice}" = "YES" ];then
-        apt-get -y remove clang make pkg-config lua5.3-dev
+        
+        if [ -f "${SOLUS}" ];then
+          eopkg rm linux-headers llvm-clang llvm-clang-devel lua-devel lua make pkg-config glibc-devel
+        
+        elif [ -f "${DEBIAN_UBUNTU}" ];then
+          apt-get -y remove clang make pkg-config lua5.3-dev
+
+        elif [ -f "${FEDORA}" ];then
+          dnf remove make clang lua-devel pkg-config
+        fi
+
     else
         printf "${LCYAN}Keeping dependencies\n${NC}"
         exit 0;
