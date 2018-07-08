@@ -15,7 +15,9 @@ LPURPLE="\033[1;35m"
 BWHITE="\e[1m"
 NC='\033[0m' # No Color
 
-
+SOLUS="/usr/bin/eopkg"
+DEBIAN_UBUNTU="/usr/bin/apt"
+FEDORA="/usr/bin/dnf"
 function checkRoot() {
   if [[ $EUID -ne 0 ]]; then
     printf "${LRED}This script must be run as root${NC}\n" 1>&2
@@ -25,9 +27,20 @@ function checkRoot() {
 
 function getDeps() {
   printf "${LGREEN}Installing required dependencies...${NC}\n"
+
+  if [ -f "${SOLUS}" ];then
+    eopkg it llvm-clang llvm-clang-devel linux-headers pkg-config make lua-devel glibc-devel
   
-  apt-get update
-  apt-get install -y clang make pkg-config lua5.3-dev
+  elif [ -f "${DEBIAN_UBUNTU}" ];then
+    apt-get update
+    apt-get install -y clang make pkg-config lua5.3-dev
+
+  elif [ -f "${FEDORA}" ];then
+    dnf install clang make lua-devel pkg-config
+
+  else
+    printf "${LRED}System not supported${NC}"
+  fi
 }
 
 
