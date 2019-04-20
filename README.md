@@ -2,11 +2,40 @@
 ## A Small portable package manager wrapper  
 
 
+## Usage:  
+
+```
+tux [options] [packages]
+
+[Options]       [Description]
+
+i  | install    Install Package(s)
+ri | reinstall  Reinstall Package(s)
+r  | remove     Remove Package(s)
+s  | search     Search for Packages
+p  | purge      Remove package(s) and associated files
+u  | upgrade    Perform System Upgrade
+c  | clean      Clean Package Cache
+su | sup        Sync and Upgrade
+```
+
+## Supported Package Managers
+
+* apt
+* brew
+* dnf
+* eopkg
+* equo
+* pacman
+* pkgman
+* xbps-install
+* yum
+* zypper
 
 
   
-## Install  
-### Dependencies  
+## Building & Installing:  
+### Dependencies:  
 
 * git
 * lua5.3
@@ -15,97 +44,94 @@
 * make
 * pkg-config
 
-### Distro specific
+### Distro Specific Commands:
 
-#### Ubuntu/Debian  
-
-
-Tested on Debian 8 Jessie and Ubuntu 16.04  
-
+#### Ubuntu/Debian:  
+  
 ```
-$ git clone https://github.com/logenkain
-$ cd tuxc/INSTALL
-$ sudo debian-install.sh
+$ apt install -y clang make pkg-config lua5.3-dev
 
 ```  
 
-#### Arch Linux  
+#### Arch Linux:  
 
 ```
 $ sudo pacman -Sy git make clang pkg-config lua53
 
 ```  
 
-#### Void Linux  
+#### Solus:  
+
+```
+$ sudo eopkg it clang make lua-devel glibc-devel pkg-config
+```
+
+#### Void Linux:  
 
 ```  
-sudo xbps-install -S tuxc 
+$ sudo xbps-install -S clang make lua-devel pkg-config glibc-devel 
 
 ```
 
-### Build
+### Compile:
 ```  
-git clone http://github.com/logenkain/tuxc.git  
-cd tuxc  
-make  
-make install  
+$ git clone http://github.com/logenkain/tuxc.git  
+$ cd tuxc  
+$ make  
+$ make install  
 ```    
 
-## Uninstall  
-
-### Ubuntu/Debian
+## Removing Using Make:  
 
 ```
-$ cd tuxc/INSTALL
-$ sudo ./debian-uninstall.sh
-
+$ make uninstall
 ```
 
-### Arch Linux  
+## Install Script:  
+
+
+
+> **_Note: This script only supports the distros listed below_**  
+
+> **_Note: tuxc is already included in the Void Linux repositories_**
+
+* Fedora
+* Solus
+* Debian & derivatives
+
+> **_Note: install.sh requires root privileges_**
+```
+$ git clone https://github.com/logenkain/tuxc.git
+$ cd tuxc/INSTALL && ./install.sh
+```
+Once the script completes, the tuxc binary can be found at:
 
 ```
-
-$ cd tuxc
-$ sudo make uninstall
-
-```  
-
-### Void Linux  
-
+/usr/bin/tux
 ```
 
-$ sudo xbps-remove tuxc
+Or just simply type the following in a terminal (without $):
 
+```
+$ tux
 ```
 
 
 
 
-## Usage  
 
 
-Usage: tux [options] [packages]
-
-	[Options]       [Description]
-
-	i  | install    Install Package(s)
-	ri | reinstall  Reinstall Package(s)
-	r  | remove     Remove Package(s)
-	s  | search     Search for Packages
-	p  | purge      Remove package(s) and associated files
-	u  | upgrade    Perform System Upgrade
-	c  | clean      Clean Package Cache
-	su | sup        Sync and Upgrade  
+  
 	
-## Creating templates  
+## Creating Custom Templates  
 
-If you are using a distribution that Tuxc does not support, a blank template is provided to add support.  
+If you are using a distribution that Tuxc does not support; a blank template is provided for you to add support.  
 
-Simply edit the 'custom_template' file in ```/usr/share/tuxc/package_managers```  
+Simply edit the **custom_template** file in ```/usr/share/tuxc/package_managers```  
 
+The contents of the file are as follows:
 
 ```  
-
 searchCommand = ""  
 syncCommand = ""  
 installCommand = ""  
@@ -117,8 +143,35 @@ cleanCommand=""
 supCommand=""
 ```  
 
-Fill out the template according to your package manager's commands and save the file in the ```/usr/share/tuxc/package_managers/<pkgmanagername>```  
+Between the quotes of each variable, type the corresponding command of your package manager  
 
-Where 'pkgmanagername' is replaced with the name of your package manager such as as 'apt-get',pacman, xbps-install etc  
+**_Example:_**
 
-Make sure you use the actual command name as tuxc will match the filenames of templates to those contained in /usr/bin
+```
+searchCommand = "pacman -Ss"
+```
+
+Once each command is entered, save the file as:
+
+**_/usr/share/tuxc/package_managers/myPkgMngr_** 
+
+
+> **_Note: No file extension is required and your custom template will be ignored if a file extension is added_**
+
+**_Example:_**
+
+```
+$ cp custom_template pacman
+```
+Then edit the new file with your favorite text editor 
+> **_Note: The name of the file must be the same as the package manager binary_**
+
+```
+$ vim pacman
+```
+
+## Issues:
+
+Please report any issues in the issue tracker
+
+
